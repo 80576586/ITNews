@@ -110,8 +110,12 @@ public class register extends AppCompatActivity {
                                             finish();
                                         }
                                         else
-                                            Toast.makeText(register.this,"出现错误", Toast.LENGTH_SHORT).show();
-
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText(register.this,"出现错误", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
                                     }
                                 }  catch (IOException | JSONException e) {
 

@@ -62,7 +62,7 @@ public class articleActivity extends AppCompatActivity {
         editText=findViewById(R.id.editText01);
         submit_btn=findViewById(R.id.submit_btn);
         addPicture=findViewById(R.id.addPicture);
-        addPicture1=findViewById(R.id.addPicture1);
+//        addPicture1=findViewById(R.id.addPicture1);
         SharedPreferences sharedPreferences=getSharedPreferences("info", Context.MODE_PRIVATE);
         String token=sharedPreferences.getString("token","");
         addPicture.setOnClickListener(new View.OnClickListener() {
@@ -150,90 +150,90 @@ public class articleActivity extends AppCompatActivity {
                 builder1.create().show();
                         }
         });
-        addPicture1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String choice[]=new String[]{"相机","相册"};
-                AlertDialog.Builder builder1 =new AlertDialog.Builder(articleActivity.this);
-                builder1.setIcon(R.drawable.ic_launcher_foreground);
-                builder1.setTitle("选择上传方式:");
-                builder1.setItems(choice, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if(which==0)
-                        {
-                            File outputImage = new File(getExternalCacheDir(),"output_image.jpg");
-                            try{
-                                if(outputImage.exists())
-                                    outputImage.delete();
-                                outputImage.createNewFile();
-                            }catch (IOException e){
-                                e.printStackTrace();
-                            }
-                            if(Build.VERSION.SDK_INT >=24){
-                                imageUri = FileProvider.getUriForFile(articleActivity.this,
-                                        "com.example.myapplication.fileprovider",outputImage);
-                            }else{
-                                imageUri = Uri.fromFile(outputImage);
-                            }
-                            SharedPreferences sharedPreferences=articleActivity.this.getSharedPreferences("info", MODE_PRIVATE);
-                            String token=sharedPreferences.getString("token","");
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    OkHttpClient client = new OkHttpClient().newBuilder()
-                                            .build();
-                                    MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-                                    RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                                            .addFormDataPart("img",imagePath,
-                                                    RequestBody.create(MediaType.parse("application/octet-stream"),
-                                                            new File(imagePath)))
-                                            .addFormDataPart("type","2")
-                                            .build();
-                                    Request request = new Request.Builder()
-                                            .url("http://39.106.195.109/itnews/api/img-upload")
-                                            .method("POST", body)
-                                            .addHeader("Authorization", token)
-                                            .addHeader("User-Agent", "apifox/1.0.0 (https://www.apifox.cn)")
-                                            .build();
-                                    try {
-                                        Response response = client.newCall(request).execute();
-                                        String responseData=response.body().string();
-                                        if (response.isSuccessful()){
-                                            JSONObject jsonObject=new JSONObject(responseData);
-                                            JSONObject jsonObject1=jsonObject.getJSONObject("data");
-                                            img_id1 = jsonObject1.getInt("img_id");
-                                            SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
-                                            SharedPreferences.Editor editor = sharedPreferences.edit();
-                                            editor.putInt("imd_id", img_id1);
-                                            editor.commit();
-                                            int a=img_id1;
-                                        }
-                                    } catch (IOException | JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }).start();
-                            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
-                            startActivityForResult(intent,TAKE_PHOTO);
-                        }
-                        else
-                        {
-                            if (ContextCompat.checkSelfPermission(articleActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                                //相册中的照片都是存储在SD卡上的，需要申请运行时权限，WRITE_EXTERNAL_STORAGE是危险权限，表示同时授予程序对SD卡的读和写的能力
-                                ActivityCompat.requestPermissions(articleActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
-                            }else {
-                                openAlbum();
-
-                            }
-
-                        }
-                    }
-                });
-                builder1.create().show();
-            }
-        });
+//        addPicture1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                final String choice[]=new String[]{"相机","相册"};
+//                AlertDialog.Builder builder1 =new AlertDialog.Builder(articleActivity.this);
+//                builder1.setIcon(R.drawable.ic_launcher_foreground);
+//                builder1.setTitle("选择上传方式:");
+//                builder1.setItems(choice, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        if(which==0)
+//                        {
+//                            File outputImage = new File(getExternalCacheDir(),"output_image.jpg");
+//                            try{
+//                                if(outputImage.exists())
+//                                    outputImage.delete();
+//                                outputImage.createNewFile();
+//                            }catch (IOException e){
+//                                e.printStackTrace();
+//                            }
+//                            if(Build.VERSION.SDK_INT >=24){
+//                                imageUri = FileProvider.getUriForFile(articleActivity.this,
+//                                        "com.example.myapplication.fileprovider",outputImage);
+//                            }else{
+//                                imageUri = Uri.fromFile(outputImage);
+//                            }
+//                            SharedPreferences sharedPreferences=articleActivity.this.getSharedPreferences("info", MODE_PRIVATE);
+//                            String token=sharedPreferences.getString("token","");
+//                            new Thread(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    OkHttpClient client = new OkHttpClient().newBuilder()
+//                                            .build();
+//                                    MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
+//                                    RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+//                                            .addFormDataPart("img",imagePath,
+//                                                    RequestBody.create(MediaType.parse("application/octet-stream"),
+//                                                            new File(imagePath)))
+//                                            .addFormDataPart("type","2")
+//                                            .build();
+//                                    Request request = new Request.Builder()
+//                                            .url("http://39.106.195.109/itnews/api/img-upload")
+//                                            .method("POST", body)
+//                                            .addHeader("Authorization", token)
+//                                            .addHeader("User-Agent", "apifox/1.0.0 (https://www.apifox.cn)")
+//                                            .build();
+//                                    try {
+//                                        Response response = client.newCall(request).execute();
+//                                        String responseData=response.body().string();
+//                                        if (response.isSuccessful()){
+//                                            JSONObject jsonObject=new JSONObject(responseData);
+//                                            JSONObject jsonObject1=jsonObject.getJSONObject("data");
+//                                            img_id1 = jsonObject1.getInt("img_id");
+//                                            SharedPreferences sharedPreferences = getSharedPreferences("info", MODE_PRIVATE);
+//                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+//                                            editor.putInt("imd_id", img_id1);
+//                                            editor.commit();
+//                                            int a=img_id1;
+//                                        }
+//                                    } catch (IOException | JSONException e) {
+//                                        e.printStackTrace();
+//                                    }
+//                                }
+//                            }).start();
+//                            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+//                            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri);
+//                            startActivityForResult(intent,TAKE_PHOTO);
+//                        }
+//                        else
+//                        {
+//                            if (ContextCompat.checkSelfPermission(articleActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+//                                //相册中的照片都是存储在SD卡上的，需要申请运行时权限，WRITE_EXTERNAL_STORAGE是危险权限，表示同时授予程序对SD卡的读和写的能力
+//                                ActivityCompat.requestPermissions(articleActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+//                            }else {
+//                                openAlbum();
+//
+//                            }
+//
+//                        }
+//                    }
+//                });
+//                builder1.create().show();
+//            }
+//        });
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -245,9 +245,6 @@ public class articleActivity extends AppCompatActivity {
                         OkHttpClient client = new OkHttpClient().newBuilder()
                                 .build();
                         MediaType mediaType = MediaType.parse("application/x-www-form-urlencoded");
-                        if (img_id==0)
-                            Toast.makeText(articleActivity.this,"请上传图片",Toast.LENGTH_SHORT).show();
-                        else {
                             RequestBody body = RequestBody.create(mediaType, "title="+title+"&content="+context+"&tag=2&img_ids="+img_id);
                             Request request = new Request.Builder()
                                     .url("http://39.106.195.109/itnews/api/news/release")
@@ -263,7 +260,7 @@ public class articleActivity extends AppCompatActivity {
                             }
                         }
 
-                    }
+
                 }).start();
                 finish();
             }
