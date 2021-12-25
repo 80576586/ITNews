@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,9 +19,9 @@ import java.util.List;
 import java.util.Map;
 
 public class articleAdapter extends RecyclerView.Adapter<articleAdapter.LinearViewHolder> {
-    private articleFragment context;
+    private Context context;
     private List<Map<String,Object>> list;
-    public articleAdapter (articleFragment context,List<Map<String,Object>> list){
+    public articleAdapter (Context context,List<Map<String,Object>> list){
         this.context=context;
         this.list=list;
 
@@ -45,7 +46,7 @@ public class articleAdapter extends RecyclerView.Adapter<articleAdapter.LinearVi
         holder.linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(context.getActivity(), newsDetailActivity.class);
+                Intent intent=new Intent(context, newsDetailActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("id", id);
                 bundle.putString("avatar",avatar);

@@ -106,7 +106,7 @@ public class newsFragment extends Fragment {
                                 LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
                                 recyclerView= (RecyclerView) getActivity().findViewById(R.id.recy);
                                 recyclerView.setLayoutManager(linearLayoutManager);
-                                Adapter adapter=new Adapter(newsFragment.this,list);
+                                Adapter adapter=new Adapter(getActivity(),list);
                                 recyclerView.setAdapter(adapter);
 
                             }
@@ -182,7 +182,7 @@ public class newsFragment extends Fragment {
                                 LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
                                 recyclerView= (RecyclerView) getActivity().findViewById(R.id.recy);
                                 recyclerView.setLayoutManager(linearLayoutManager);
-                                Adapter adapter=new Adapter(newsFragment.this,list);
+                                Adapter adapter=new Adapter(getActivity(),list);
                                 recyclerView.setAdapter(adapter);
 
                             }
@@ -243,7 +243,7 @@ public class newsFragment extends Fragment {
                                 LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
                                 recyclerView=  getActivity().findViewById(R.id.recy);
                                 recyclerView.setLayoutManager(linearLayoutManager);
-                                Adapter adapter=new Adapter(newsFragment.this,list);
+                                Adapter adapter=new Adapter(getActivity(),list);
                                 recyclerView.setAdapter(adapter);
 
                             }

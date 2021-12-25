@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity {
         fPerson=findViewById(R.id.fPerson);
         tvSingOut=findViewById(R.id.signOut);
 
-//        replaceFragment(new articleFragment());
-//        replaceFragment(new userFragment());
-//        replaceFragment(new newsFragment());
         show("news");
         fNews.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,38 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void replaceFragment(Fragment fragment) {
-        Intent intent2=getIntent();
-        token=intent2.getStringExtra("token");
-        Bundle bundle1=new Bundle();
-        bundle1.putString("token",token);
-        fragment.setArguments(bundle1);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.frameLayout, fragment);
-        transaction.commit();
-        currentFragment=fragment;
-    }
-//    //正确的做法
-//    private void switchFragment(Fragment targetFragment) {
-//
-//
-//        FragmentTransaction transaction = getSupportFragmentManager()
-//                .beginTransaction();
-//        if (!targetFragment.isAdded()) {
-//            transaction
-//                    .hide(currentFragment)
-//                    .add(R.id.frameLayout, targetFragment)
-//                    .commit();
-//
-//        } else {
-//            transaction
-//                    .hide(currentFragment)
-//                    .show(targetFragment)
-//                    .commit();
-//        }
-//        currentFragment = targetFragment;
-//    }
+
     private void show(String tag) {
         if (currentFragment != null) {
             getSupportFragmentManager().beginTransaction().hide(currentFragment).commit();

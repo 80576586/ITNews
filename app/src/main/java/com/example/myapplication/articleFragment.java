@@ -116,7 +116,7 @@ public class articleFragment extends Fragment {
                                     LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
                                     recyArticle=getActivity().findViewById(R.id.recyArticle);
                                     recyArticle.setLayoutManager(linearLayoutManager);
-                                    articleAdapter adapter=new articleAdapter(articleFragment.this,list);
+                                    articleAdapter adapter=new articleAdapter(getActivity(),list);
                                     recyArticle.setAdapter(adapter);
 
                                 }
