@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".articleActivity"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <TextView
+        android:text="发布文章"
+        android:textSize="25sp"
+        android:textColor="@color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        />
+
+
+    <LinearLayout
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="25dp">
+
+        <EditText
+            android:id="@+id/tv01"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="5dp"
+            android:hint="标题"
+            android:textSize="23sp"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#00000000"/>
+
+        <EditText
+            android:paddingTop="20dp"
+            android:id="@+id/editText01"
+            android:gravity="top"
+            android:padding="5dp"
+            android:maxLength="300"
+            android:hint="正文"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:background="#00000000"/>
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="附加图片"
+            android:textSize="23sp" />
+
+
+<!--                <GridView-->
+<!--                    android:id="@+id/gridview"-->
+<!--                    android:layout_width="fill_parent"-->
+<!--                    android:layout_height="200dp"-->
+
+<!--                    android:horizontalSpacing="2dp"-->
+<!--                    android:verticalSpacing="5dp"-->
+<!--                    android:scrollbars="none"-->
+<!--                    android:listSelector="#00000000"-->
+<!--                    android:numColumns="3" >-->
+<!--                </GridView>-->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:paddingHorizontal="50dp"
+            android:paddingVertical="20dp">
+            <LinearLayout
+                android:id="@+id/lnlo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="80dp">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/add"
+                    android:id="@+id/addPicture"/>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/add"
+                    android:id="@+id/addPicture1"
+                    android:layout_marginLeft="20dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="80dp"
+                android:layout_below="@+id/lnlo">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/add"
+                    android:id="@+id/addPicture2"/>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/add"
+                    android:id="@+id/addPicture3"
+                    android:layout_marginLeft="20dp"
+                    />
+            </LinearLayout>
+
+
+
+        </RelativeLayout>
+
+
+        <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:textSize="23sp"
+            android:text="发布"
+            android:gravity="center"
+            android:layout_marginHorizontal="100dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>
